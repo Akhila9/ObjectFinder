@@ -26,7 +26,16 @@ namespace ObjectFinder
         [LuisIntent("Location")]
         public async Task Location(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"We will help to find the desired object");
+            context.Call(new jamesloc(), ResumeAfterjameslocDialog);
+        }
+
+        public async Task ResumeAfterjameslocDialog(IDialogContext context, IAwaitable<object> result)
+        {
+            var messageHandled = await result;
+
+
+            await context.PostAsync($"We hope we helped to find the desired object");
+
             context.Wait(MessageReceived);
         }
 
