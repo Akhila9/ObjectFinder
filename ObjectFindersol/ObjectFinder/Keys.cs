@@ -7,6 +7,6 @@ namespace ObjectFinder
 {
     public class Keys
     {
-        public static string bingMapsKey = @"d9941142-a427-488b-9289-390664434da6";
+        public static string bingMapsKey = @"Ak0TW4OvykAN8o0ThhpJQtlPl5GG1wN0n29SjuGE1lhm65fcDh6lC42vs6WHaLAZ";
     }
 }

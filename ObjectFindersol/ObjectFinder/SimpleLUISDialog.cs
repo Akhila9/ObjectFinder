@@ -1,5 +1,6 @@
 ﻿using AdaptiveCards;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Location;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
@@ -26,7 +27,19 @@ namespace ObjectFinder
         [LuisIntent("Location")]
         public async Task Location(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"We will help to find the desired object");
+
+           
+            
+            context.Call(new jamesloc(), ResumeAfterjameslocDialog);
+        }
+
+        public async Task ResumeAfterjameslocDialog(IDialogContext context, IAwaitable<object> result)
+        {
+            var messageHandled = await result;
+           
+          
+                await context.PostAsync($"We hope we helped to find the desired object");
+           
             context.Wait(MessageReceived);
         }
 
@@ -121,21 +134,21 @@ card.Body.Add(new ChoiceSet()
 });
 
 // Add buttons to the card.
-card.Actions.Add(new HttpAction()
+card.Actions.Add(new OpenUrlAction()
         {
             Url = "http://foo.com",
     Title = "Snooze"
 });
 
-card.Actions.Add(new HttpAction()
+card.Actions.Add(new OpenUrlAction()
         {
-            Url = "http://foo.com",
+            Url = "http://google.com",
     Title = "I'll be late"
 });
 
-card.Actions.Add(new HttpAction()
+card.Actions.Add(new OpenUrlAction()
         {
-            Url = "http://foo.com",
+    Url = "http://google.com",
     Title = "Dismiss"
 });
 
