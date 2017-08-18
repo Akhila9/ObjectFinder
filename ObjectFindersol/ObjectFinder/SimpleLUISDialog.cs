@@ -11,7 +11,7 @@ using System.Web;
 
 namespace ObjectFinder
 {
-    [LuisModel("aed3a3e8-9922-495d-8e9e-6d1f1227f6f6", "61d437de2cec4f949ba1c13e4342375b")]
+    [LuisModel("Luis Application ID", "Subscription Key")]
     [Serializable]
     public class SimpleLUISDialog : LuisDialog<object>
     {
@@ -78,80 +78,7 @@ namespace ObjectFinder
             await context.PostAsync(message);
             context.Wait(this.MessageReceived);
         }
-        [LuisIntent("Adaptive")]
-        public async Task Adaptive(IDialogContext context, LuisResult result)
-        {
-            var message = context.MakeMessage();
-            message.Attachments = new List<Attachment>();
-            AdaptiveCard card = new AdaptiveCard();
-
-        
-
-        // Add text to the card.
-        card.Body.Add(new TextBlock()
-        {
-            Text = "Adaptive Card design session",
-            Size = TextSize.Large,
-            Weight = TextWeight.Bolder
-});
-
-// Add text to the card.
-card.Body.Add(new TextBlock()
-        {
-            Text="Distance"
-});
-
-// Add text to the card.
-card.Body.Add(new TextBlock()
-        {
-            Text = "500-1000kms"
-});
-
-// Add list of choices to the card.
-card.Body.Add(new ChoiceSet()
-        {
-            Id = "snooze",
-    Style = ChoiceInputStyle.Compact,
-    Choices = new List<Choice>()
-    {
-        new Choice() { Title = "5 minutes", Value = "5", IsSelected = true },
-        new Choice() { Title = "15 minutes", Value = "15" },
-        new Choice() { Title = "30 minutes", Value = "30" }
-    }
-});
-
-// Add buttons to the card.
-card.Actions.Add(new HttpAction()
-        {
-            Url = "http://foo.com",
-    Title = "Snooze"
-});
-
-card.Actions.Add(new HttpAction()
-        {
-            Url = "http://foo.com",
-    Title = "I'll be late"
-});
-
-card.Actions.Add(new HttpAction()
-        {
-            Url = "http://foo.com",
-    Title = "Dismiss"
-});
-
-// Create the attachment.
-Attachment attachment = new Attachment()
-{
-    ContentType = AdaptiveCard.ContentType,
-    Content = card
-};
-         
-            message.Attachments.Add(attachment);
-            await context.PostAsync(message);
-            context.Wait(this.MessageReceived);
-        }
-
-
+       
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
