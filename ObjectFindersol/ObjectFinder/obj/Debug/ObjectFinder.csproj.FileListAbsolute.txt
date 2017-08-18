@@ -1,0 +1,40 @@
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Bot Application.dll.config
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Bot Application.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Bot Application.pdb
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Autofac.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Chronic.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Builder.Autofac.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Builder.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Connector.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Rest.ClientRuntime.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Newtonsoft.Json.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Net.Http.Formatting.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Web.Http.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Web.Http.WebHost.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Autofac.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Builder.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Builder.Autofac.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.Bot.Connector.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\Newtonsoft.Json.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Net.Http.Formatting.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Web.Http.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\System.Web.Http.WebHost.xml
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\de-dE\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\obj\Debug\Bot Application.dll
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\obj\Debug\Bot Application.pdb
+C:\Users\Akhila\Documents\Visual Studio 2015\Projects\ObjectFindersol\ObjectFinder\bin\AdaptiveCards.dll
