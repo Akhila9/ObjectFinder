@@ -11,7 +11,7 @@ using System.Web;
 
 namespace ObjectFinder
 {
-    [LuisModel("Luis Application ID", "Subscription Key")]
+    [LuisModel("aed3a3e8-9922-495d-8e9e-6d1f1227f6f6", "61d437de2cec4f949ba1c13e4342375b")]
     [Serializable]
     public class SimpleLUISDialog : LuisDialog<object>
     {
@@ -50,6 +50,7 @@ namespace ObjectFinder
         public async Task Cards(IDialogContext context, LuisResult result)
         {
             var message = context.MakeMessage();
+            message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             message.Attachments = new List<Attachment>();
             Dictionary<string, string> cardContentList = new Dictionary<string, string>();
             cardContentList.Add("Hyderabad", "http://www.culturalindia.net/iliimages/Charminar-ili-45-img-4.jpg");
@@ -68,6 +69,7 @@ namespace ObjectFinder
                     Value = $"https://en.wikipedia.org/wiki/{cardContent.Key}",
                     Type = "openUrl",
                     Title = "WikiPedia Page"
+                    
                 };
 
                 cardButtons.Add(plButton);
@@ -77,7 +79,8 @@ namespace ObjectFinder
                     Title = $"About {cardContent.Key}",
                     Subtitle = $"{cardContent.Key} Wikipedia Page",
                     Images = cardImages,
-                    Buttons = cardButtons
+                    Buttons = cardButtons,
+                    Tap=plButton
                 };
 
 
@@ -87,7 +90,33 @@ namespace ObjectFinder
             await context.PostAsync(message);
             context.Wait(this.MessageReceived);
         }
-       
+        [LuisIntent("sample")]
+        public async Task Sample(IDialogContext context, LuisResult result)
+        {
+            
+                string loc =" Nellore";
+
+                var message = context.MakeMessage();
+                message.Attachments = new List<Attachment>();
+                var heroCard = new HeroCard
+                {
+                    Title = "Sample location",
+
+
+                    Images = new List<CardImage> {
+                    new CardImage("https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+loc) },
+                    Buttons = new List<CardAction> {
+                    new CardAction(ActionTypes.ShowImage, "View", value: "https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+loc) }
+                };
+                Attachment p2Attachment = heroCard.ToAttachment();
+                message.Attachments.Add(p2Attachment);
+
+                await context.PostAsync(message);
+            
+          
+            context.Wait(this.MessageReceived);
+
+        }
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
