@@ -3,6 +3,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
+using ObjectFinder.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace ObjectFinder
     public class SimpleLUISDialog : LuisDialog<object>
     {
 
-
+        //string name;
         [LuisIntent("Greetings")]
         public async Task Greetings(IDialogContext context, LuisResult result)
         {
@@ -93,8 +94,20 @@ namespace ObjectFinder
         [LuisIntent("sample")]
         public async Task Sample(IDialogContext context, LuisResult result)
         {
-            
-                string loc =" Nellore";
+            await context.PostAsync("Hi, Let me help to find a location.");
+
+            context.Call(new LocationDialog(), this.LocationDialogResumeAfter);
+
+        }
+        private async Task LocationDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
+        {
+            await context.PostAsync("find a location.");
+
+            try
+            {
+                string loc = await result;
+
+                //string loc = this.name;
 
                 var message = context.MakeMessage();
                 message.Attachments = new List<Attachment>();
@@ -113,10 +126,24 @@ namespace ObjectFinder
 
                 await context.PostAsync(message);
             
-          
             context.Wait(this.MessageReceived);
-
         }
+
+
+    
+            catch (TooManyAttemptsException)
+            {
+                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
+
+                //await this.Sample(context);
+            }
+        }
+
+
+
+                
+
+        
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
