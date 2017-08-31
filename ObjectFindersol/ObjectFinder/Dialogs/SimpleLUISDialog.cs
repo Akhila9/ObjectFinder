@@ -27,18 +27,47 @@ namespace ObjectFinder
         [LuisIntent("Location")]
         public async Task Location(IDialogContext context, LuisResult result)
         {
-            context.Call(new jamesloc(), ResumeAfterjameslocDialog);
-        }
+            var reply = context.MakeMessage();
+            reply.Attachments = new List<Attachment>();
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+            EntityRecommendation entityplace;
+            List<string> entitiespresent = new List<string>();
+            foreach (var entityList in result.Entities)
+            {
+                entitiespresent.Add(entityList.Entity);
+            }
+            if (entitiespresent.Count!=0)
+            {
+                foreach (var epl in entitiespresent)
+                {
+                    string Loc = epl;
+                    if (result.TryFindEntity("Places", out entityplace))
+                    {
+                      var heroCard = new HeroCard
+                        {
+                            Title = "Map for " + Loc,
+                            Images = new List<CardImage> {
+                    new CardImage("https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+Loc) },
+                            Buttons = new List<CardAction> {
+                    new CardAction(ActionTypes.ShowImage, "View", value: "https://www.google.co.in/maps/place/"+Loc) }
+                        };
 
-        public async Task ResumeAfterjameslocDialog(IDialogContext context, IAwaitable<object> result)
-        {
-            var messageHandled = await result;
+                        reply.Attachments.Add(heroCard.ToAttachment());
+                    }
+
+               }
+                await context.PostAsync(reply);
+            }
+            else
+            {
+                await context.PostAsync($"Enter valid location");
+            }
 
 
-            await context.PostAsync($"We hope we helped to find the desired object");
-
+            
             context.Wait(MessageReceived);
         }
+    
 
 
         [LuisIntent("")]
@@ -95,31 +124,23 @@ namespace ObjectFinder
         public async Task Sample(IDialogContext context, LuisResult result)
         {
             await context.PostAsync("Hi, Let me help to find a location.");
-
-            context.Call(new LocationDialog(), this.LocationDialogResumeAfter);
-
+            PromptDialog.Text(context, this.LocationDialogResumeAfter, "Enter Location", "Try again", 3);
+            
+            PromptDialog.Text
         }
         private async Task LocationDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
         {
-            await context.PostAsync("find a location.");
-
-            try
-            {
+            
                 string loc = await result;
-
-                //string loc = this.name;
-
                 var message = context.MakeMessage();
                 message.Attachments = new List<Attachment>();
                 var heroCard = new HeroCard
                 {
                     Title = "Sample location",
-
-
                     Images = new List<CardImage> {
                     new CardImage("https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+loc) },
                     Buttons = new List<CardAction> {
-                    new CardAction(ActionTypes.ShowImage, "View", value: "https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+loc) }
+                    new CardAction(ActionTypes.ShowImage, "View", value: "https://www.google.co.in/maps/place/"+loc) }
                 };
                 Attachment p2Attachment = heroCard.ToAttachment();
                 message.Attachments.Add(p2Attachment);
@@ -131,13 +152,8 @@ namespace ObjectFinder
 
 
     
-            catch (TooManyAttemptsException)
-            {
-                await context.PostAsync("I'm sorry, I'm having issues understanding you. Let's try again.");
-
-                //await this.Sample(context);
-            }
-        }
+         
+        
 
 
 
