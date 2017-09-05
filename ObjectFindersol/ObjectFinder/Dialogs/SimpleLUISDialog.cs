@@ -21,7 +21,24 @@ namespace ObjectFinder
         [LuisIntent("Greetings")]
         public async Task Greetings(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"I am a bot named ObjFinder");
+            if (result.Query.Contains("hi") || result.Query.Contains("Hi")|| result.Query.Contains("hii") || result.Query.Contains("Hii"))
+            {
+                await context.PostAsync($"Hi, I am a bot named ObjFinder, which can help you to find a location.");
+            }
+            else if (result.Query.Contains("Hello"))
+            {
+                await context.PostAsync($"Hello, I am here to assist you in finding a location.");
+            }
+            else if (result.Query.Contains("do"))
+            {
+                await context.PostAsync($"I can help you to find a location.");
+
+            }
+            else
+            {
+                await context.PostAsync($"This is a bot to find the location of a place");
+            }
+            
             context.Wait(MessageReceived);
         }
         [LuisIntent("Location")]
@@ -63,25 +80,22 @@ namespace ObjectFinder
                 await context.PostAsync($"Enter valid location");
             }
 
-
-            
             context.Wait(MessageReceived);
         }
     
-
-
         [LuisIntent("")]
         public async Task None(IDialogContext context, LuisResult result)
         {
             await context.PostAsync("I have no idea what you are talking about.");
             context.Wait(MessageReceived);
         }
+
         [LuisIntent("Cards")]
         public async Task Cards(IDialogContext context, LuisResult result)
         {
-            var message = context.MakeMessage();
-            message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
-            message.Attachments = new List<Attachment>();
+            var reply = context.MakeMessage();
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+            reply.Attachments = new List<Attachment>();
             Dictionary<string, string> cardContentList = new Dictionary<string, string>();
             cardContentList.Add("Hyderabad", "http://www.culturalindia.net/iliimages/Charminar-ili-45-img-4.jpg");
             cardContentList.Add("Chennai", "https://msdnholidays.files.wordpress.com/2011/03/chennai-central.jpg");
@@ -115,25 +129,22 @@ namespace ObjectFinder
 
 
                 Attachment plAttachment = plCard.ToAttachment();
-                message.Attachments.Add(plAttachment);
+                reply.Attachments.Add(plAttachment);
             }
-            await context.PostAsync(message);
+            await context.PostAsync(reply);
             context.Wait(this.MessageReceived);
         }
         [LuisIntent("sample")]
         public async Task Sample(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Hi, Let me help to find a location.");
             PromptDialog.Text(context, this.LocationDialogResumeAfter, "Enter Location", "Try again", 3);
-            
-            PromptDialog.Text
+
         }
         private async Task LocationDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
         {
-            
                 string loc = await result;
-                var message = context.MakeMessage();
-                message.Attachments = new List<Attachment>();
+                var reply = context.MakeMessage();
+                reply.Attachments = new List<Attachment>();
                 var heroCard = new HeroCard
                 {
                     Title = "Sample location",
@@ -143,28 +154,19 @@ namespace ObjectFinder
                     new CardAction(ActionTypes.ShowImage, "View", value: "https://www.google.co.in/maps/place/"+loc) }
                 };
                 Attachment p2Attachment = heroCard.ToAttachment();
-                message.Attachments.Add(p2Attachment);
+                reply.Attachments.Add(p2Attachment);
 
-                await context.PostAsync(message);
+                await context.PostAsync(reply);
             
+
             context.Wait(this.MessageReceived);
         }
 
-
-    
-         
-        
-
-
-
-                
-
-        
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
-            var message = context.MakeMessage();
-            message.Attachments = new List<Attachment>();
+            var reply = context.MakeMessage();
+            reply.Attachments = new List<Attachment>();
             var thumbnailCard = new ThumbnailCard
             {
                 Title = "Object Finder Help",
@@ -176,8 +178,8 @@ namespace ObjectFinder
                     new CardAction(ActionTypes.OpenUrl, "View More", value: "https://github.com/Microsoft/BotBuilder-Location") }
             };
             Attachment plAttachment = thumbnailCard.ToAttachment();
-            message.Attachments.Add(plAttachment);
-            await context.PostAsync(message);
+            reply.Attachments.Add(plAttachment);
+            await context.PostAsync(reply);
             context.Wait(this.MessageReceived);
 
         }
