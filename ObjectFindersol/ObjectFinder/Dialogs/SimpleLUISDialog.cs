@@ -134,34 +134,7 @@ namespace ObjectFinder
             await context.PostAsync(reply);
             context.Wait(this.MessageReceived);
         }
-        [LuisIntent("sample")]
-        public async Task Sample(IDialogContext context, LuisResult result)
-        {
-            PromptDialog.Text(context, this.LocationDialogResumeAfter, "Enter Location", "Try again", 3);
-
-        }
-        private async Task LocationDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
-        {
-                string loc = await result;
-                var reply = context.MakeMessage();
-                reply.Attachments = new List<Attachment>();
-                var heroCard = new HeroCard
-                {
-                    Title = "Sample location",
-                    Images = new List<CardImage> {
-                    new CardImage("https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAUT0zYwpPk82Y7BsCL1_VSM5Sohk8FEYQ&center="+loc) },
-                    Buttons = new List<CardAction> {
-                    new CardAction(ActionTypes.ShowImage, "View", value: "https://www.google.co.in/maps/place/"+loc) }
-                };
-                Attachment p2Attachment = heroCard.ToAttachment();
-                reply.Attachments.Add(p2Attachment);
-
-                await context.PostAsync(reply);
-            
-
-            context.Wait(this.MessageReceived);
-        }
-
+       
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
